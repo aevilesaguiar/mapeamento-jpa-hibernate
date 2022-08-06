@@ -20,6 +20,22 @@ public class VeiculoId implements Serializable{
         this.cidade = cidade;
     }
 
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
     @Override
     public boolean equals(Object o) {
 
