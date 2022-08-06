@@ -1,19 +1,15 @@
-package com.cadastroVeiculo.dao.model;
+package com.cadastroVeiculo.model;
 
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tab_veiculos")
 public class Veiculo {
 
-    @Id
-    @GeneratedValue(generator = "inc")
-    @GenericGenerator(name = "inc", strategy = "increment")//gerador de chave próprio do Hibernate chamado increment, que é o famoso select max + 1.
-    @Column(name = "cod_veiculo")
-    private Long codigo;
+    @EmbeddedId
+    private VeiculoId id;
     @Column(length = 60, nullable = false)
     private String fabricante;
     @Column(length = 60, nullable = false)
@@ -37,13 +33,7 @@ public class Veiculo {
         this.valor = valor;
     }
 
-    public Long getCodigo() {
-        return codigo;
-    }
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
-    }
 
     public String getFabricante() {
         return fabricante;
@@ -90,11 +80,11 @@ public class Veiculo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Veiculo veiculo = (Veiculo) o;
-        return Objects.equals(codigo, veiculo.codigo);
+        return Objects.equals(id, veiculo.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codigo);
+        return Objects.hash(id);
     }
 }
